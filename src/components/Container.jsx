@@ -4,6 +4,7 @@ import './Container.css';
 import TemperatureConverter from '../utils/TemperatureConverter';
 
 import TemperatureForm from './TemperatureForm';
+import MessageBox from './MessageBox';
 
 class Container extends Component {
   constructor(props) {
@@ -12,7 +13,12 @@ class Container extends Component {
     this.state = {
       celDegree: "",
       fahDegree: "",
+      isBoiling: false,
     }
+  }
+
+  checkBoilingPoint(celDegree) {
+    return celDegree >= 100;
   }
 
   onCelChangeHandler(e) {
@@ -20,14 +26,17 @@ class Container extends Component {
     this.setState({
       celDegree: degree,
       fahDegree: TemperatureConverter.celToFah(degree),
+      isBoiling: this.checkBoilingPoint(degree),
     });
   }
 
   onFahChangeHandler(e) {
     let degree = e.target.value;
+    let celDegree = TemperatureConverter.fahToCel(degree);
     this.setState({
-      celDegree: TemperatureConverter.fahToCel(degree),
-      fahDegree: degree
+      celDegree: celDegree,
+      fahDegree: degree,
+      isBoiling: this.checkBoilingPoint(celDegree),
     });
   }
 
@@ -47,6 +56,14 @@ class Container extends Component {
           placeholder="212&#x2109;"
           onChange={this.onFahChangeHandler.bind(this)}
           degree={this.state.fahDegree}
+          />
+        <MessageBox
+          msg={
+            this.state.isBoiling ?
+              '물이 끓고 있어요.' :
+              '물이 아직 안끓고 있어요.'
+            }
+            alert={this.state.isBoiling}
           />
       </div>
     );

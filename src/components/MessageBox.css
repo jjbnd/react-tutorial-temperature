@@ -1,0 +1,10 @@
+.MessageBox {
+  display: flex;
+  border: solid 2px gray;
+  margin: 10px;
+  padding: 5px;
+}
+
+.MessageBox.alert {
+  background: #ffbfbf;
+}
