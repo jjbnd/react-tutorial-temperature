@@ -63,7 +63,7 @@ class Container extends Component {
               '물이 끓고 있어요.' :
               '물이 아직 안끓고 있어요.'
             }
-            alert={this.state.isBoiling}
+          alert={this.state.isBoiling}
           />
       </div>
     );
