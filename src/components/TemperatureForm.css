@@ -1,0 +1,14 @@
+.TemperatureForm {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.TemperatureForm > fieldset {
+  width: 90%;
+  text-align: left;
+}
+
+fieldset > input {
+  width: 100%;
+}
