@@ -9,14 +9,6 @@ class EventBinder {
 
     return handlers;
   }
-
-  static selfBind(context, prefix) {
-    let handlers = EventBinder.extractHanders(context, prefix);
-    Object.keys(handlers).forEach((k) => {
-      console.log(k);
-      context[k] = handlers[k].bind(context);
-    });
-  }
 }
 
 export default EventBinder;
